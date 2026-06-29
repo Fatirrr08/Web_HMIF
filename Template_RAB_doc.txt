@@ -1,0 +1,99 @@
+RANCANGAN ANGGARAN
+NAMA KEGIATAN
+HIMPUNAN MAHASISWA TEKNIK INFORMATIKA
+ TELKOM UNIVERSITY PURWOKERTO
+
+No
+Rincian
+Vol
+Satuan
+Harga
+Sub Total
+Keterangan
+
+PEMASUKAN
+
+
+
+
+
+1
+Subsidi Institusi
+1
+Paket
+Jumlah pendanaan
+Jumlah pendanaan
+
+2
+Sponsor/Danus/Iuran
+(apabila ada)
+1
+Paket
+Jumlah pendanaan
+Jumlah pendanaan
+
+
+Total Pemasukan
+
+
+
+Jumlah pendanaan
+
+
+
+
+
+
+
+
+
+PENGELUARAN
+
+
+
+
+
+1
+pengeluaran
+1
+Paket
+Jumlah
+pengeluaran
+Jumlah
+pengeluaran
+Pembagian Pemasukkan
+
+…dst
+
+
+
+
+
+
+
+Total Pengeluaran
+
+
+
+Jumlah
+pengeluaran
+
+
+Selisih Pemasukan & Pengeluaran
+
+
+
+0 
+
+
+
+Pemasukan
+(Pemasukan harus logic, sponsor/danus yang terlalu besar apabila sebatas baru rencana tidak diperbolehkan, kecuali dana sudah tersedia.
+Untuk tarikan/iuran kepada mahasiswa sifatnya tidak boleh mewajibkan.
+
+Pengeluaran
+Antara pemasukan dan pengeluaran harus sama nilainya  atau dengan kata lain tidak ada selisih kekurangan,
+Harus ada kepastian anggaran sebelum kegiatan dilakukan.
+
+Keterangan
+Apabila terdapat lebih dari satu pemasukkan maka terdapat penambahan baris yang berisi keterangan pengeluaran tersebut masuk kedalam anggaran pemasukkan yang mana

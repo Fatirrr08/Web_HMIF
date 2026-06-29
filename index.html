@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Board - HMIF</title>
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Local Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="header-logo logo-left">
+                <img src="image/LOGO Himpunan.png" alt="Logo Himpunan" id="logo-himpunan">
+            </div>
+            <div class="header-title">
+                <h1>Executive Board</h1>
+                <p>Himpunan Mahasiswa Teknik Informatika</p>
+            </div>
+            <div class="header-logo logo-right" style="display: flex; align-items: center; gap: 15px;">
+                <img src="image/LOGO KABINET.png" alt="Logo Kabinet" id="logo-kabinet">
+            </div>
+        </header>
+
+        <!-- Main Tab Menu Buttons -->
+        <nav class="tabs-nav">
+            <button type="button" class="tab-btn active" data-tab="numbering-tab">
+                <i class="fa-solid fa-hashtag"></i> Pembuat Nomor Surat
+            </button>
+            <button type="button" class="tab-btn" data-tab="doc-generator-tab">
+                <i class="fa-solid fa-file-signature"></i> Pembuat Proposal & LPJ
+            </button>
+            <button type="button" class="tab-btn" data-tab="treasurer-tab" id="btn-tab-treasurer">
+                <i class="fa-solid fa-wallet"></i> Menu Treasurer (Bendahara)
+            </button>
+        </nav>
+
+        <!-- Main Workspace -->
+        <main class="app-main">
+            <!-- Tab Content 1: Auto-Numbering -->
+            <div id="numbering-tab" class="tab-content active-content">
+                <section class="form-card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-pen-to-square"></i> Buat Nomor Surat Resmi</h2>
+                        <span class="badge" id="data-status-badge">Menghubungkan ke Google Drive...</span>
+                    </div>
+
+                    <form id="generator-form" onsubmit="event.preventDefault();">
+                        <!-- Dropdown: Jenis Dokumen -->
+                        <div class="input-group">
+                            <label for="document-type"><i class="fa-solid fa-file-invoice"></i> Jenis Dokumen</label>
+                            <select id="document-type" required>
+                                <option value="" disabled selected>-- Pilih Jenis Dokumen --</option>
+                                <option value="01|SK">01 - Surat Keputusan (SK)</option>
+                                <option value="02|U">02 - Undangan (U)</option>
+                                <option value="03|ST">03 - Surat Tugas (ST)</option>
+                                <option value="04|SPum">04 - Surat Pengumuman (SPum)</option>
+                                <option value="05|SPp">05 - Surat Permohonan Peminjaman (SPp)</option>
+                                <option value="06|SA">06 - Surat Pengantar (SA)</option>
+                                <option value="07|P">07 - Proposal (P)</option>
+                                <option value="08|LPJ">08 - Laporan Pertanggungjawaban (LPJ)</option>
+                                <option value="09|SP">09 - Surat Permohonan (SP)</option>
+                                <option value="10|S">10 - Sertifikat (S)</option>
+                                <option value="11|SpK">11 - Surat Perjanjian / Kerja Sama (SpK)</option>
+                            </select>
+                        </div>
+
+                        <!-- Dropdown: Kegiatan -->
+                        <div class="input-group">
+                            <label for="activity-select"><i class="fa-solid fa-calendar-day"></i> Nama Kegiatan</label>
+                            <div class="input-row" style="gap: 6px;">
+                                <select id="activity-select" class="select-with-add" required>
+                                    <!-- Populated dynamically via JS -->
+                                </select>
+                                <button type="button" id="btn-show-new-activity" class="btn-add-icon" title="Tambah Kegiatan Baru">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Input Teks Bebas: Kegiatan Baru (Hidden by default) -->
+                        <div id="new-activity-container" class="input-group hidden-transition">
+                            <div class="input-row" style="gap: 8px;">
+                                <input type="text" id="new-activity-name" placeholder="Nama kegiatan baru..." style="flex: 1;">
+                                <input type="text" id="new-activity-abbrev" placeholder="Singkatan" style="width: 120px; flex-shrink: 0;">
+                                <button type="button" id="btn-save-new-activity" class="btn-success-small" style="white-space: nowrap;">
+                                    <i class="fa-solid fa-floppy-disk"></i> Simpan
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Input Teks: Singkatan Kegiatan -->
+                        <div class="input-group">
+                            <label for="activity-abbreviation">
+                                <i class="fa-solid fa-font"></i> Singkatan Kegiatan
+                                <span class="label-info">(Otomatis / Bisa Diedit)</span>
+                            </label>
+                            <input type="text" id="activity-abbreviation" placeholder="Contoh: LDK" required>
+                        </div>
+
+                        <!-- Input Angka: Nomor Urut -->
+                        <div class="input-group">
+                            <label for="sequence-number">
+                                <i class="fa-solid fa-list-ol"></i> Nomor Urut Surat
+                                <span class="label-info">(Otomatis Mengikuti Urutan Terakhir)</span>
+                            </label>
+                            <input type="number" id="sequence-number" min="1" placeholder="Contoh: 15" required>
+                        </div>
+
+                        <!-- Input Teks: Perihal Kegiatan (Optional, untuk log ke Drive) -->
+                        <div class="input-group">
+                            <label for="letter-subject"><i class="fa-solid fa-circle-info"></i> Perihal / Keterangan
+                                Surat <span class="label-info">(Opsional untuk Log)</span></label>
+                            <input type="text" id="letter-subject" placeholder="Contoh: Peminjaman Ruangan Rapat">
+                        </div>
+
+                        <!-- Auto-Date Info Row -->
+                        <div class="info-row">
+                            <div class="info-item">
+                                <span class="info-label">Bulan Terdeteksi</span>
+                                <span class="info-value" id="current-month-roman">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Tahun Terdeteksi</span>
+                                <span class="info-value" id="current-year">-</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <button type="button" id="btn-generate" class="btn-primary">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Nomor Surat
+                        </button>
+                    </form>
+
+                    <!-- Output Result Section -->
+                    <div id="result-card" class="result-card hidden">
+                        <h3>Hasil Nomor Surat</h3>
+                        <div class="result-display-wrapper">
+                            <div id="generated-number" class="generated-number">-</div>
+                        </div>
+                        <div class="result-actions">
+                            <button id="btn-copy" class="btn-secondary">
+                                <i class="fa-regular fa-copy"></i> Salin Nomor
+                            </button>
+                            <button id="btn-log-drive" class="btn-success hidden">
+                                <i class="fa-brands fa-google-drive"></i> Catat ke Google Sheet
+                            </button>
+                        </div>
+                        <div id="copy-toast" class="toast hidden">
+                            <i class="fa-solid fa-circle-check"></i> Nomor surat berhasil disalin ke clipboard!
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Tab Content 2: Document Generator -->
+            <div id="doc-generator-tab" class="tab-content hidden">
+                <section class="form-card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-file-signature"></i> Buat Proposal & LPJ Kegiatan</h2>
+                        <span class="badge" id="doc-status-badge">Google Drive Terhubung</span>
+                    </div>
+
+                    <form id="doc-generator-form" onsubmit="event.preventDefault();">
+                        <div class="form-grid-layout">
+                            <!-- Left Column: Admin & Detail Metadata -->
+                            <div class="form-left-col">
+                                <!-- Input Row: Jenis Dokumen & Kategori Resiko -->
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label for="gen-doc-type"><i class="fa-solid fa-folder-open"></i> Jenis Dokumen</label>
+                                        <select id="gen-doc-type" required>
+                                            <option value="proposal" selected>Proposal Kegiatan</option>
+                                            <option value="lpj">LPJ Kegiatan</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group" id="gen-risk-container">
+                                        <label for="gen-risk-type"><i class="fa-solid fa-triangle-exclamation"></i> Kategori Resiko</label>
+                                        <select id="gen-risk-type" required>
+                                            <option value="Resiko Rendah/Sedang" selected>Resiko Rendah/Sedang</option>
+                                            <option value="Resiko Tinggi">Resiko Tinggi</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Dropdown: Kegiatan -->
+                                <div class="input-group">
+                                    <label for="gen-activity-select"><i class="fa-solid fa-calendar-day"></i> Nama Kegiatan</label>
+                                    <div class="input-row" style="gap: 6px;">
+                                        <select id="gen-activity-select" class="select-with-add" required>
+                                            <!-- Populated dynamically via JS -->
+                                        </select>
+                                        <button type="button" id="btn-show-gen-activity" class="btn-add-icon" title="Tambah Kegiatan Baru">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Input Teks Bebas: Kegiatan Baru (Hidden by default) -->
+                                <div id="gen-new-activity-container" class="input-group hidden-transition">
+                                    <div class="input-row" style="gap: 8px;">
+                                        <input type="text" id="gen-new-activity-name" placeholder="Nama kegiatan baru..." style="flex: 1;">
+                                        <input type="text" id="gen-new-activity-abbrev" placeholder="Singkatan" style="width: 120px; flex-shrink: 0;">
+                                        <button type="button" id="btn-save-gen-activity" class="btn-success-small" style="white-space: nowrap;">
+                                            <i class="fa-solid fa-floppy-disk"></i> Simpan
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Input Row: Tanggal & Tempat Pelaksanaan -->
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label for="gen-date"><i class="fa-solid fa-calendar-days"></i> Tanggal Pelaksanaan</label>
+                                        <input type="text" id="gen-date" placeholder="Contoh: 15-18 Juli 2026" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="gen-place"><i class="fa-solid fa-map-location-dot"></i> Tempat Pelaksanaan</label>
+                                        <input type="text" id="gen-place" placeholder="Contoh: Aula Kampus HMIF" required>
+                                    </div>
+                                </div>
+
+                                <!-- Input Row: Ketua & NIM (Smart autocomplete) -->
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label for="gen-chair"><i class="fa-solid fa-user-tie"></i> Ketua Pelaksana</label>
+                                        <select id="gen-chair" required>
+                                            <option value="" disabled selected>-- Pilih Ketua Pelaksana --</option>
+                                            <!-- Populated dynamically from Drive database -->
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="gen-nim"><i class="fa-solid fa-id-card"></i> NIM Ketua</label>
+                                        <input type="text" id="gen-nim" placeholder="NIM otomatis terisi" readonly required>
+                                    </div>
+                                </div>
+
+                                <!-- Input Teks: Departemen (Smart autocomplete) -->
+                                <div class="input-group">
+                                    <label for="gen-dept"><i class="fa-solid fa-users-gear"></i> Departemen / Divisi</label>
+                                    <input type="text" id="gen-dept" placeholder="Departemen otomatis terisi" readonly required>
+                                </div>
+
+                                <!-- Custom manual name input (Hidden by default) -->
+                                <div id="gen-custom-chair-container" class="input-group hidden-transition">
+                                    <label for="gen-custom-chair-name"><i class="fa-solid fa-user-pen"></i> Nama Ketua Pelaksana Manual</label>
+                                    <input type="text" id="gen-custom-chair-name" placeholder="Masukkan nama ketua pelaksana">
+                                </div>
+
+                                <!-- Input Row: Jam & Tanggal Pengesahan -->
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label for="gen-time"><i class="fa-solid fa-clock"></i> Jam Kegiatan</label>
+                                        <input type="text" id="gen-time" placeholder="Contoh: 08.00 – 17.00 WIB" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="gen-approval-date"><i class="fa-solid fa-stamp"></i> Tanggal Pengesahan</label>
+                                        <input type="text" id="gen-approval-date" placeholder="Contoh: 10 Juli 2026" required>
+                                    </div>
+                                </div>
+
+                                <!-- Input Row: Sekretaris & NIM Sekretaris -->
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label for="gen-secretary"><i class="fa-solid fa-user-pen"></i> Sekretaris Kegiatan</label>
+                                        <select id="gen-secretary">
+                                            <option value="" selected>-- Pilih Sekretaris (opsional) --</option>
+                                            <!-- Populated dynamically from Drive database -->
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="gen-secretary-nim"><i class="fa-solid fa-id-badge"></i> NIM Sekretaris</label>
+                                        <input type="text" id="gen-secretary-nim" placeholder="NIM otomatis terisi" readonly>
+                                    </div>
+                                </div>
+
+                                <!-- Input Teks: Target Peserta -->
+                                <div class="input-group">
+                                    <label for="gen-peserta"><i class="fa-solid fa-users"></i> Target Peserta</label>
+                                    <input type="text" id="gen-peserta" placeholder="Contoh: Seluruh anggota HMIF angkatan 2024-2026">
+                                </div>
+
+                                <!-- Dosen Info container (High Risk Only) -->
+                                <div id="gen-dosen-container" class="input-group hidden-transition">
+                                    <div class="input-row">
+                                        <div class="input-group">
+                                            <label for="gen-dosen-name"><i class="fa-solid fa-user-tie"></i> Dosen Pendamping (PIC)</label>
+                                            <input type="text" id="gen-dosen-name" placeholder="Nama Dosen Pendamping">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="gen-dosen-nidn"><i class="fa-solid fa-id-card"></i> NIDN / NIK Dosen</label>
+                                            <input type="text" id="gen-dosen-nidn" placeholder="NIDN atau NIK">
+                                        </div>
+                                    </div>
+                                    <div class="input-group" style="margin-top: 8px;">
+                                        <label for="gen-dosen-phone"><i class="fa-solid fa-phone"></i> No. Telp Dosen Pendamping</label>
+                                        <input type="text" id="gen-dosen-phone" placeholder="Contoh: 081234567890">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column: AI Generation, Proposal Body & Budgets -->
+                            <div class="form-right-col">
+                                <!-- Drive Training Panel -->
+                                <div class="drive-training-panel hidden" id="drive-training-panel">
+                                    <div class="drive-training-header">
+                                        <span class="drive-training-icon">🧠</span>
+                                        <div class="drive-training-info">
+                                            <strong>Training AI dari Google Drive</strong>
+                                            <span id="drive-training-status">
+                                                <span id="drive-training-count-wrapper" style="display:none">
+                                                    ✅ Aktif · <b id="drive-training-count">0</b> dokumen dimuat
+                                                    <small id="drive-training-last">—</small>
+                                                </span>
+                                                <span id="drive-training-idle">Belum discan. Klik tombol untuk melatih AI dari proposal nyata di Drive kamu.</span>
+                                            </span>
+                                        </div>
+                                        <button type="button" id="btn-train-ai-drive" class="btn-train-drive">
+                                            <i class="fa-solid fa-satellite-dish"></i> Scan & Train dari Drive
+                                        </button>
+                                    </div>
+                                    <ul id="drive-training-doclist" class="drive-training-doclist"></ul>
+                                </div>
+
+                                <!-- AI Generate Button - Tombol Utama -->
+                                <div class="ai-generate-banner" id="ai-banner">
+                                    <div class="ai-banner-left">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        <div>
+                                            <strong>Isi Otomatis dengan Gemini AI</strong>
+                                            <span>Generate Latar Belakang, Tujuan, Manfaat, Tema & Penutup sekaligus</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="btn-generate-ai-all" class="btn-ai-main">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Semua
+                                    </button>
+                                </div>
+
+                                <!-- Input Teks: Tema Kegiatan -->
+                                <div class="input-group">
+                                    <label for="gen-tema">
+                                        <i class="fa-solid fa-lightbulb"></i> Tema Kegiatan
+                                        <button type="button" class="btn-ai-inline" data-ai-field="tema" title="Generate dengan AI">
+                                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        </button>
+                                    </label>
+                                    <input type="text" id="gen-tema" placeholder="Contoh: Bersama Membangun Informatika yang Lebih Baik">
+                                </div>
+
+                                <!-- Input Teks: Latar Belakang -->
+                                <div class="input-group">
+                                    <label for="gen-desc">
+                                        <i class="fa-solid fa-align-left"></i> Latar Belakang Kegiatan
+                                        <button type="button" class="btn-ai-inline" data-ai-field="latarBelakang" title="Generate dengan AI">
+                                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        </button>
+                                    </label>
+                                    <textarea id="gen-desc" rows="4"
+                                        placeholder="Tuliskan latar belakang singkat mengenai tujuan diadakannya program kerja ini..."
+                                        required></textarea>
+                                </div>
+
+                                <!-- Input Teks: Tujuan Kegiatan -->
+                                <div class="input-group">
+                                    <label for="gen-tujuan">
+                                        <i class="fa-solid fa-bullseye"></i> Tujuan Kegiatan
+                                        <button type="button" class="btn-ai-inline" data-ai-field="tujuan" title="Generate dengan AI">
+                                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        </button>
+                                    </label>
+                                    <textarea id="gen-tujuan" rows="3"
+                                        placeholder="Contoh: 1. Meningkatkan kompetensi anggota HMIF di bidang kepemimpinan..."></textarea>
+                                </div>
+
+                                <!-- Input Teks: Manfaat Kegiatan -->
+                                <div class="input-group">
+                                    <label for="gen-manfaat">
+                                        <i class="fa-solid fa-star"></i> Manfaat Kegiatan
+                                        <button type="button" class="btn-ai-inline" data-ai-field="manfaat" title="Generate dengan AI">
+                                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        </button>
+                                    </label>
+                                    <textarea id="gen-manfaat" rows="3"
+                                        placeholder="Contoh: 1. Peserta mampu memahami dasar-dasar kepemimpinan yang baik..."></textarea>
+                                </div>
+
+                                <!-- Input Teks: Kalimat Penutup -->
+                                <div class="input-group">
+                                    <label for="gen-penutup">
+                                        <i class="fa-solid fa-pen-nib"></i> Kalimat Penutup
+                                        <button type="button" class="btn-ai-inline" data-ai-field="penutup" title="Generate dengan AI">
+                                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        </button>
+                                    </label>
+                                    <textarea id="gen-penutup" rows="3"
+                                        placeholder="Contoh: Demikian proposal ini kami susun sebagai acuan pelaksanaan kegiatan. Atas perhatian dan dukungan semua pihak, kami ucapkan terima kasih."></textarea>
+                                </div>
+
+                                <!-- Anggaran Keuangan Section (Hanya untuk Proposal) -->
+                                <div id="gen-budget-section" class="budget-section">
+                                    <div class="section-title-row">
+                                        <h3><i class="fa-solid fa-money-bill-transfer"></i> Rincian Anggaran Keuangan</h3>
+                                        <button type="button" id="btn-add-budget-row" class="btn-success-small">
+                                            <i class="fa-solid fa-plus"></i> Tambah Item
+                                        </button>
+                                    </div>
+
+                                    <div class="budget-table-container">
+                                        <table id="budget-input-table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 8%">No</th>
+                                                    <th>Rincian Kebutuhan Item</th>
+                                                    <th style="width: 15%">Jumlah</th>
+                                                    <th style="width: 25%">Harga Satuan (Rp)</th>
+                                                    <th style="width: 20%">Total</th>
+                                                    <th style="width: 8%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="budget-input-tbody">
+                                                <!-- Budget items dynamically added here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="budget-summary-row">
+                                        <span>Total Anggaran Diajukan:</span>
+                                        <strong id="gen-total-budget-display">Rp 0</strong>
+                                    </div>
+                                </div>
+
+                                <!-- Collapsible Panel 1: Susunan Panitia Lengkap -->
+                                <div class="collapsible-panel">
+                                    <button type="button" class="collapsible-header">
+                                        <span><i class="fa-solid fa-users-viewfinder"></i> Lampiran I: Susunan Kepanitiaan (Lengkap)</span>
+                                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                                    </button>
+                                    <div class="collapsible-content">
+                                        <div class="input-row">
+                                            <div class="input-group">
+                                                <label for="gen-sub-chair"><i class="fa-solid fa-user"></i> Wakil Ketua Pelaksana</label>
+                                                <select id="gen-sub-chair">
+                                                    <option value="" selected>-- Pilih Wakil (opsional) --</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="gen-sub-chair-nim">NIM Wakil</label>
+                                                <input type="text" id="gen-sub-chair-nim" placeholder="NIM otomatis" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="input-row">
+                                            <div class="input-group">
+                                                <label for="gen-treasurer-1"><i class="fa-solid fa-coins"></i> Bendahara I</label>
+                                                <select id="gen-treasurer-1">
+                                                    <option value="" selected>-- Pilih Bendahara I (opsional) --</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="gen-treasurer-1-nim">NIM Bendahara I</label>
+                                                <input type="text" id="gen-treasurer-1-nim" placeholder="NIM otomatis" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="input-row">
+                                            <div class="input-group">
+                                                <label for="gen-treasurer-2"><i class="fa-solid fa-coins"></i> Bendahara II</label>
+                                                <select id="gen-treasurer-2">
+                                                    <option value="" selected>-- Pilih Bendahara II (opsional) --</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="gen-treasurer-2-nim">NIM Bendahara II</label>
+                                                <input type="text" id="gen-treasurer-2-nim" placeholder="NIM otomatis" readonly>
+                                            </div>
+                                        </div>
+
+                                        <!-- Divisions / Sie Section -->
+                                        <div class="division-section-header">
+                                            <h4>Divisi / Seksi Pelaksana</h4>
+                                            <button type="button" id="btn-add-division" class="btn-success-small">
+                                                <i class="fa-solid fa-plus"></i> Tambah Divisi
+                                            </button>
+                                        </div>
+                                        <div id="division-container" class="division-list">
+                                            <!-- Dynamic division fields inserted here -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Collapsible Panel 2: Susunan Acara (Rundown) -->
+                                <div class="collapsible-panel">
+                                    <button type="button" class="collapsible-header">
+                                        <span><i class="fa-solid fa-timeline"></i> Lampiran III: Susunan Acara (Rundown)</span>
+                                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                                    </button>
+                                    <div class="collapsible-content">
+                                        <div class="section-title-row">
+                                            <h4>Daftar Rundown Acara</h4>
+                                            <button type="button" id="btn-add-rundown" class="btn-success-small">
+                                                <i class="fa-solid fa-plus"></i> Tambah Baris
+                                            </button>
+                                        </div>
+                                        <div class="budget-table-container">
+                                            <table class="rundown-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 22%">Waktu (Mulai-Selesai)</th>
+                                                        <th style="width: 15%">Durasi (Menit)</th>
+                                                        <th>Nama Kegiatan</th>
+                                                        <th style="width: 18%">PIC</th>
+                                                        <th style="width: 18%">Tempat</th>
+                                                        <th style="width: 15%">Dress Code</th>
+                                                        <th style="width: 6%"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="rundown-tbody">
+                                                    <!-- Dynamic rundown fields inserted here -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Collapsible Panel 3: Bab XI: Tabel Mitigasi Risiko -->
+                                <div class="collapsible-panel">
+                                    <button type="button" class="collapsible-header">
+                                        <span><i class="fa-solid fa-shield-halved"></i> Bab XI: Identifikasi & Mitigasi Risiko</span>
+                                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                                    </button>
+                                    <div class="collapsible-content">
+                                        <div class="section-title-row">
+                                            <h4>Tabel Mitigasi Risiko</h4>
+                                            <button type="button" id="btn-add-mitigation" class="btn-success-small">
+                                                <i class="fa-solid fa-plus"></i> Tambah Baris
+                                            </button>
+                                        </div>
+                                        <div class="budget-table-container">
+                                            <table class="mitigation-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Uraian Kegiatan</th>
+                                                        <th>Identifikasi Bahaya</th>
+                                                        <th style="width: 10%">Peluang (1-5)</th>
+                                                        <th style="width: 10%">Akibat (1-5)</th>
+                                                        <th style="width: 10%">Tingkat</th>
+                                                        <th>Pengendalian Risiko</th>
+                                                        <th style="width: 15%">Penanggung Jawab</th>
+                                                        <th style="width: 6%"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="mitigation-tbody">
+                                                    <!-- Dynamic mitigation fields inserted here -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Collapsible Panel 4: Capaian Pelaksanaan Program (CPP) -->
+                                <div class="collapsible-panel">
+                                    <button type="button" class="collapsible-header">
+                                        <span><i class="fa-solid fa-square-check"></i> Target Capaian Pelaksanaan Program (CPP)</span>
+                                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                                    </button>
+                                    <div class="collapsible-content" style="display: none; padding: 16px;">
+                                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Pilih target kompetensi yang ingin dicapai dalam program kerja ini:</p>
+                                        <div class="cpp-grid">
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Integritas" checked> Integritas
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Tanggung Jawab" checked> Tanggung Jawab
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Kedisiplinan" checked> Kedisiplinan
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Kerjasama" checked> Kerjasama
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Kepemimpinan"> Kepemimpinan
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Komunikasi Efektif"> Komunikasi Efektif
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Memotivasi diri"> Memotivasi diri
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Pengelolaan diri"> Pengelolaan diri
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Adaptif"> Adaptif
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" class="cpp-checkbox" value="Kompetitif"> Kompetitif
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <button type="button" id="btn-generate-doc" class="btn-primary">
+                            <i class="fa-solid fa-file-circle-plus"></i> Buat Dokumen di Google Drive
+                        </button>
+                    </form>
+
+                    <!-- Document Generator Result Card -->
+                    <div id="doc-result-card" class="result-card hidden">
+                        <h3>Dokumen Berhasil Dibuat!</h3>
+                        <div class="doc-status-wrapper">
+                            <i class="fa-solid fa-file-shield doc-success-icon"></i>
+                            <div class="doc-details">
+                                <h4 id="generated-doc-title">Nama File Baru</h4>
+                                <p>Tersimpan rapi di subfolder: <code>WEB_SECRETARY_OUTPUT</code></p>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <a href="#" id="btn-open-doc" target="_blank" class="btn-success text-center">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Google Docs
+                            </a>
+                        </div>
+
+                        <!-- AI Auditor Panel -->
+                        <div id="ai-auditor-panel" class="ai-auditor-panel">
+                            <div class="ai-auditor-header">
+                                <i class="fa-solid fa-robot ai-auditor-icon"></i>
+                                <div>
+                                    <h4>AI Agent QA Auditor</h4>
+                                    <span id="ai-auditor-status">Menghubungkan ke AI Agent...</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Audit Checklist -->
+                            <ul id="ai-auditor-checklist" class="ai-auditor-checklist">
+                                <li id="audit-signatures"><i class="fa-solid fa-circle-notch fa-spin"></i> Memeriksa Halaman Pengesahan & Tanda Tangan</li>
+                                <li id="audit-risk"><i class="fa-solid fa-circle-notch fa-spin"></i> Memeriksa Dokumen Pendamping & Mitigasi Risiko</li>
+                                <li id="audit-placeholders"><i class="fa-solid fa-circle-notch fa-spin"></i> Memeriksa Pembersihan Placeholder & Panduan Merah</li>
+                                <li id="audit-tables"><i class="fa-solid fa-circle-notch fa-spin"></i> Memeriksa Penyelarasan Tabel & Font (Times New Roman 12)</li>
+                                <li id="audit-panitia"><i class="fa-solid fa-circle-notch fa-spin"></i> Memeriksa Kerapian Lampiran & Seksi Panitia</li>
+                            </ul>
+                            
+                            <!-- AI Advisor Comment Box -->
+                            <div id="ai-auditor-feedback" class="ai-auditor-feedback hidden"></div>
+
+                            <!-- AI Auto-Fix Button -->
+                            <button type="button" id="btn-ai-autofix" class="btn-primary hidden" style="margin-top: 15px; width: 100%; background-color: #f59e0b; border-color: #d97706; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Perbaiki & Rapi Otomatis dengan AI
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Tab Content 3: Treasurer (Bendahara) Document Generator -->
+            <div id="treasurer-tab" class="tab-content hidden">
+                <section class="form-card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-wallet"></i> Pembuat RAB & LPJ Keuangan Himpunan</h2>
+                        <span class="badge" id="treasurer-status-badge">Menghubungkan ke Google Drive...</span>
+                    </div>
+
+                    <form id="treasurer-form" onsubmit="event.preventDefault();">
+                        <div class="form-grid-layout">
+                            <!-- Left Column: Admin & Detail Metadata -->
+                            <div class="form-left-col">
+                                <!-- Dropdown: Nama Kegiatan -->
+                                <div class="input-group">
+                                    <label for="treasurer-activity-select"><i class="fa-solid fa-calendar-day"></i> Nama Kegiatan</label>
+                                    <div class="input-row" style="gap: 6px;">
+                                        <select id="treasurer-activity-select" class="select-with-add" required>
+                                            <!-- Populated dynamically via JS -->
+                                        </select>
+                                        <button type="button" id="btn-show-treasurer-activity" class="btn-add-icon" title="Tambah Kegiatan Baru">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Input Teks Bebas: Kegiatan Baru (Hidden by default) -->
+                                <div id="treasurer-new-activity-container" class="input-group hidden-transition">
+                                    <div class="input-row" style="gap: 8px;">
+                                        <input type="text" id="treasurer-new-activity-name" placeholder="Nama kegiatan baru..." style="flex: 1;">
+                                        <input type="text" id="treasurer-new-activity-abbrev" placeholder="Singkatan" style="width: 120px; flex-shrink: 0;">
+                                        <button type="button" id="btn-save-treasurer-activity" class="btn-success-small" style="white-space: nowrap;">
+                                            <i class="fa-solid fa-floppy-disk"></i> Simpan
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Input Departemen (Auto-Fill) -->
+                                <div class="input-group">
+                                    <label for="treasurer-dept-input"><i class="fa-solid fa-sitemap"></i> Departemen / Divisi</label>
+                                    <input type="text" id="treasurer-dept-input" placeholder="Executive Board" readonly required style="background: rgba(255,255,255,0.05); cursor: not-allowed;">
+                                </div>
+
+                                <!-- Dropdown: Pilih Template Bendahara (Dinamis dari Drive) -->
+                                <div class="input-group">
+                                    <label for="treasurer-template-select"><i class="fa-solid fa-file-invoice"></i> Pilih Template Bendahara</label>
+                                    <select id="treasurer-template-select" required>
+                                        <option value="" disabled selected>-- Memuat Template dari Drive... --</option>
+                                    </select>
+                                </div>
+
+                                <!-- Nominal Subsidi Institusi (Hanya untuk LPJ Keuangan) -->
+                                <div id="subsidi-input-group" class="input-group hidden-transition">
+                                    <label for="treasurer-subsidi-input"><i class="fa-solid fa-money-bill-wave"></i> Nominal Subsidi Institusi (Jumlah Panjar)</label>
+                                    <input type="number" id="treasurer-subsidi-input" placeholder="Contoh: 375000">
+                                </div>
+
+                                <!-- Action Button -->
+                                <button type="button" id="btn-generate-treasurer" class="btn-primary">
+                                    <i class="fa-solid fa-file-circle-plus"></i> Buat Dokumen Keuangan
+                                </button>
+
+                                <!-- Treasurer Result Card -->
+                                <div id="treasurer-result-card" class="result-card hidden">
+                                    <h3>Dokumen Keuangan Berhasil Dibuat!</h3>
+                                    <div class="doc-status-wrapper">
+                                        <i class="fa-solid fa-file-shield doc-success-icon"></i>
+                                        <div class="doc-details">
+                                            <h4 id="treasurer-doc-title">Nama File Baru</h4>
+                                            <p>Tersimpan rapi di subfolder proker Anda di: <code>WEB_SECRETARY_OUTPUT</code></p>
+                                        </div>
+                                    </div>
+                                    <div class="result-actions">
+                                        <a href="#" id="btn-open-treasurer-doc" target="_blank" class="btn-success text-center">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka File Keuangan
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column: Tables -->
+                            <div class="form-right-col">
+                                <!-- SECTION A: Tabel Input RAB (Pemasukan & Pengeluaran) -->
+                                <div id="rab-table-section" class="input-group hidden-transition">
+                                    <div class="section-title-wrapper">
+                                        <h3><i class="fa-solid fa-list-check"></i> Rincian Rencana Anggaran (RAB)</h3>
+                                        <button type="button" id="btn-add-rab-row" class="btn-success-small">
+                                            <i class="fa-solid fa-plus"></i> Tambah Baris RAB
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="input-table" id="rab-input-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tipe</th>
+                                                    <th>Rincian Item</th>
+                                                    <th>Vol</th>
+                                                    <th>Satuan</th>
+                                                    <th>Harga Satuan</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="rab-table-body">
+                                                <!-- Rows added dynamically -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- SECTION B: Tabel Input LPJ Keuangan (Rincian Pembelanjaan) -->
+                                <div id="lpj-table-section" class="input-group hidden-transition">
+                                    <div class="section-title-wrapper">
+                                        <h3><i class="fa-solid fa-receipt"></i> Rincian Pembelanjaan Panjar (LPJ)</h3>
+                                        <button type="button" id="btn-add-lpj-row" class="btn-success-small">
+                                            <i class="fa-solid fa-plus"></i> Tambah Transaksi
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="input-table" id="lpj-input-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tanggal</th>
+                                                    <th>Uraian Belanja</th>
+                                                    <th>Harga Sebelum PPh</th>
+                                                    <th>Potongan PPh</th>
+                                                    <th>Total Dibayar</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="lpj-table-body">
+                                                <!-- Rows added dynamically -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 EB_HMIF - Project EXECUTIVE BOARD. Built with <i class="fa-solid fa-heart"
+                    style="color: #e25555;"></i> for HMIF.</p>
+        </footer>
+    </div>
+
+
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" id="btn-close-settings">&times;</span>
+            <h3><i class="fa-solid fa-gears"></i> Pengaturan AI Agent & OpenRouter</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px;">
+                Konfigurasi OpenRouter untuk memverifikasi proposal dan mencocokkan dokumen 100% akurat.
+            </p>
+            
+            <form id="settings-form" onsubmit="event.preventDefault();">
+                <!-- Input: OpenRouter Key -->
+                <div class="input-group">
+                    <label for="settings-openrouter-key"><i class="fa-solid fa-key"></i> OpenRouter API Key</label>
+                    <input type="password" id="settings-openrouter-key" placeholder="sk-or-v1-...">
+                </div>
+                
+                <!-- Select: Model AI -->
+                <div class="input-group">
+                    <label for="settings-ai-model"><i class="fa-solid fa-robot"></i> Pilih Model AI</label>
+                    <select id="settings-ai-model">
+                        <option value="anthropic/claude-3.5-sonnet" selected>Anthropic: Claude 3.5 Sonnet (Sangat Direkomendasikan)</option>
+                        <option value="google/gemini-2.5-flash">Google: Gemini 2.5 Flash (Terbaru & Cepat)</option>
+                        <option value="google/gemini-2.5-flash:free">Google: Gemini 2.5 Flash (GRATIS/FREE)</option>
+                        <option value="meta-llama/llama-3.3-70b-instruct:free">Meta: Llama 3.3 70B (GRATIS/FREE)</option>
+                        <option value="openrouter/free">OpenRouter: Free Auto-Router (GRATIS/FREE)</option>
+                        <option value="openai/gpt-4o">OpenAI: GPT-4o (Premium)</option>
+                    </select>
+                </div>
+                
+                <!-- Textarea: Custom Rules / Training Prompts -->
+                <div class="input-group">
+                    <label for="settings-ai-rules">
+                        <i class="fa-solid fa-graduation-cap"></i> Aturan / Instruksi Kepatuhan AI (Training Rules)
+                    </label>
+                    <textarea id="settings-ai-rules" rows="8" placeholder="Masukkan aturan spesifik di sini..."></textarea>
+                </div>
+                
+                <button type="button" id="btn-save-settings" class="btn-primary" style="margin-top: 15px;">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Konfigurasi
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Local Script -->
+    <script src="app.js?v=202606300221"></script>
+</body>
+
+</html>

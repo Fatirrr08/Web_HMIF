@@ -1,0 +1,708 @@
+{
+  "KULIAH UMUM": {
+    "abbrev": "KU",
+    "max_sequence": 12,
+    "next_sequence": 13,
+    "letters": [
+      {
+        "nomor": "05.001/SPp/KU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-18",
+        "kegiatan": "Peminjaman bandiwth"
+      },
+      {
+        "nomor": "05.002/SPp/KU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-19",
+        "kegiatan": "Peminjaman PC"
+      },
+      {
+        "nomor": "05.003/SPp/KU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-21",
+        "kegiatan": "Peminjaman bandiwth "
+      },
+      {
+        "nomor": "05.004/SPp/KU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-22",
+        "kegiatan": "Peminjaman ruangan"
+      },
+      {
+        "nomor": "05.005/SPp/KU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-23",
+        "kegiatan": "Peminjaman bandwith"
+      },
+      {
+        "nomor": "09.006/SP/KU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-25",
+        "kegiatan": "Permohonan TAK"
+      },
+      {
+        "nomor": "10.007/S/KU/HMIF/TUP/V/2026",
+        "tanggal": "",
+        "kegiatan": "Sertif KU 1 & 2"
+      },
+      {
+        "nomor": "05.008/SP/KU/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-16",
+        "kegiatan": "Permohonan TAK KU #2"
+      },
+      {
+        "nomor": "05.009/SPp/KU/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-16",
+        "kegiatan": "Peminjaman bandiwth"
+      },
+      {
+        "nomor": "05.010/SPp/KU/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-16",
+        "kegiatan": "Peminjaman monitor & hdmi"
+      },
+      {
+        "nomor": "05.011/SP/KU/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-22",
+        "kegiatan": "Permohonan TAK KU #3"
+      },
+      {
+        "nomor": "10.012/S/KU/HMIF/TUP/VI/2026",
+        "tanggal": "",
+        "kegiatan": "Sertif KU 3"
+      }
+    ]
+  },
+  "HMIF": {
+    "abbrev": "HMIF",
+    "max_sequence": 8,
+    "next_sequence": 9,
+    "letters": [
+      {
+        "nomor": "05.001/SPp/OPREC/HMIF/TUP/XII/2025",
+        "tanggal": "2025-12-15",
+        "kegiatan": "Peminjaman Ruangan Wawancara"
+      },
+      {
+        "nomor": "01.002/SK/HMIF/TUP/XII/2025",
+        "tanggal": "2025-12-28",
+        "kegiatan": "SK Kelulusan Calon Pengurus HMIF 2026"
+      },
+      {
+        "nomor": "05.003/SPp/HMIF/TUP/XII/2025",
+        "tanggal": "2025-12-30",
+        "kegiatan": "Peminjaman Ruangan First Meet"
+      },
+      {
+        "nomor": "05.004/SPp/MUSLUB/HMIF/TUP/I/2026",
+        "tanggal": "2026-01-14",
+        "kegiatan": "Peminjaman Ruangan MUSLUB"
+      },
+      {
+        "nomor": "01.005/SK/MUSLUB/HMIF/TUP/I/2026",
+        "tanggal": "2026-01-15",
+        "kegiatan": "SK Muslub"
+      },
+      {
+        "nomor": "01.006/SK/HMIF/TUP/IV/2026",
+        "tanggal": "2026-04-30",
+        "kegiatan": "SP1"
+      },
+      {
+        "nomor": "01.007/SK/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-25",
+        "kegiatan": "Surat Keputusan"
+      },
+      {
+        "nomor": "10.008/S/HMIF/TUP/VI/2026",
+        "tanggal": "",
+        "kegiatan": "Piagam Stuban CCO"
+      }
+    ]
+  },
+  "DONOR DARAH": {
+    "abbrev": "DD",
+    "max_sequence": 1,
+    "next_sequence": 2,
+    "letters": [
+      {
+        "nomor": "07.001/P/DD/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-12",
+        "kegiatan": "Proposal"
+      }
+    ]
+  },
+  "STUDI BANDING UGM": {
+    "abbrev": "SB",
+    "max_sequence": 1,
+    "next_sequence": 2,
+    "letters": [
+      {
+        "nomor": "07.001/P/SB/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-15",
+        "kegiatan": "Proposal"
+      }
+    ]
+  },
+  "PENGABDIAN MASYARAKAT": {
+    "abbrev": "PM",
+    "max_sequence": 1,
+    "next_sequence": 2,
+    "letters": [
+      {
+        "nomor": "07.001/P/PM/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-15",
+        "kegiatan": "Proposal"
+      }
+    ]
+  },
+  "WPI 2026": {
+    "abbrev": "WPI",
+    "max_sequence": 2,
+    "next_sequence": 3,
+    "letters": [
+      {
+        "nomor": "07.001/P/WPI/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-14",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "01.002/SK/WPI/TUP/VI/2026",
+        "tanggal": "2026-06-26",
+        "kegiatan": "SK kelulusan calon panit wpi"
+      }
+    ]
+  },
+  "WORKSHOP INTERNAL OBS": {
+    "abbrev": "WOBS",
+    "max_sequence": 3,
+    "next_sequence": 4,
+    "letters": [
+      {
+        "nomor": "07.001/P/WOBS/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-20",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/WOBS/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-20",
+        "kegiatan": "Peminjaman AUVI"
+      },
+      {
+        "nomor": "08.003/LPJ/WOBS/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-17",
+        "kegiatan": "LPJ"
+      }
+    ]
+  },
+  "SERTIJAB": {
+    "abbrev": "SERTIJAB",
+    "max_sequence": 6,
+    "next_sequence": 7,
+    "letters": [
+      {
+        "nomor": "07.001/P/SERTIJAB/HMIF/TUP/I/2026",
+        "tanggal": "2026-01-05",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "02.002/U/SERTIJAB/HMIF/TUP/I/2026",
+        "tanggal": "2026-01-08",
+        "kegiatan": "Undangan Kaprodi"
+      },
+      {
+        "nomor": "02.003/U/SERTIJAB/HMIF/TUP/I/2026",
+        "tanggal": "",
+        "kegiatan": "Undangan KEMA"
+      },
+      {
+        "nomor": "02.004/U/SERTIJAB/HMIF/TUP/I/2026",
+        "tanggal": "",
+        "kegiatan": "Undangan Pembina"
+      },
+      {
+        "nomor": "02.005/U/SERTIJAB/HMIF/TUP/I/2026",
+        "tanggal": "",
+        "kegiatan": "Undangan Sekprodi"
+      },
+      {
+        "nomor": "08.006/LPJ/SERTIJAB/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-27",
+        "kegiatan": "LPJ"
+      }
+    ]
+  },
+  "AKROBAT": {
+    "abbrev": "AKROBAT",
+    "max_sequence": 4,
+    "next_sequence": 5,
+    "letters": [
+      {
+        "nomor": "07.001/P/AKROBAT/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-24",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "11.002/SpK/AKROBAT/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-22",
+        "kegiatan": "Surat Kerjasama HMTB"
+      },
+      {
+        "nomor": "10.003/S/AKROBAT/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-04",
+        "kegiatan": "Sertifikat HMTB"
+      },
+      {
+        "nomor": "08.004/LPJ/AKROBAT/HMIF/TUP/III/2026",
+        "tanggal": "2026-04-01",
+        "kegiatan": "LPJ"
+      }
+    ]
+  },
+  "UPGRADING": {
+    "abbrev": "UPGRADING",
+    "max_sequence": 3,
+    "next_sequence": 4,
+    "letters": [
+      {
+        "nomor": "07.001/P/UPGRADING/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-11",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "11.002/SpK/UPGRADING/HMIF/TUP/IV/2026",
+        "tanggal": "2026-04-08",
+        "kegiatan": "MOU Villa"
+      },
+      {
+        "nomor": "08.003/LPJ/UPGRADING/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-03",
+        "kegiatan": "LPJ"
+      }
+    ]
+  },
+  "RESPONSIF UTS GENAP": {
+    "abbrev": "RUTSGENAP",
+    "max_sequence": 6,
+    "next_sequence": 7,
+    "letters": [
+      {
+        "nomor": "07.001/P/RUTSGENAP/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-07",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/RUTSGENAP/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-08",
+        "kegiatan": "Surat Peminajaman akun zoom"
+      },
+      {
+        "nomor": "08.003/LPJ/RUTSGENAP/HMIF/TUP/IV/2026",
+        "tanggal": "2026-04-22",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "10.004/S/RUTSGENAP/HMIF/TUP/IV/2026",
+        "tanggal": "2026-04-24",
+        "kegiatan": "Sertif"
+      },
+      {
+        "nomor": "09.005/SP/RUTSGENAP/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-01",
+        "kegiatan": "TAK KOLEKTIF"
+      },
+      {
+        "nomor": "09.006/SP/RUTSGENAP/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-10",
+        "kegiatan": "TAK KOLEKTIF"
+      }
+    ]
+  },
+  "RESPONSIF UAS GENAP": {
+    "abbrev": "RUASGENAP",
+    "max_sequence": 3,
+    "next_sequence": 4,
+    "letters": [
+      {
+        "nomor": "07.001/P/RUASGENAP/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-09",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/RUASGENAP/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-09",
+        "kegiatan": "Surat Peminajaman akun zoom"
+      },
+      {
+        "nomor": "08.003/LPJ/RUASGENAP/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-17",
+        "kegiatan": "LPJ"
+      }
+    ]
+  },
+  "PODCAST INFORMATICS": {
+    "abbrev": "PODCAST",
+    "max_sequence": 5,
+    "next_sequence": 6,
+    "letters": [
+      {
+        "nomor": "07.001/P/PODCAST/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-10",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/PODCAST/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-27",
+        "kegiatan": "Surat Peminjaman akun"
+      },
+      {
+        "nomor": "08.003/LPJ/PODCAST/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-09",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "09.004/SP/PODCAST/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-12",
+        "kegiatan": "TAK KOLEKTIF"
+      },
+      {
+        "nomor": "10.005/S/PODCAST/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-17",
+        "kegiatan": "SERTIF"
+      }
+    ]
+  },
+  "SOSIAL BERBAGI": {
+    "abbrev": "SOSBER",
+    "max_sequence": 4,
+    "next_sequence": 5,
+    "letters": [
+      {
+        "nomor": "07.001/P/SOSBER/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-06",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "08.002/LPJ/SOSBER/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-10",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "10.003/S/SOSBER/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-07",
+        "kegiatan": "Sertif"
+      },
+      {
+        "nomor": "09.004/SP/SOSBER/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-24",
+        "kegiatan": "Surat Permohonan TAK Kolektif"
+      }
+    ]
+  },
+  "WEBINAR": {
+    "abbrev": "WEBINAR",
+    "max_sequence": 5,
+    "next_sequence": 6,
+    "letters": [
+      {
+        "nomor": "07.001/P/WEBINAR/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-10",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/WEBINAR/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-02",
+        "kegiatan": "Surat peminjaman akun zoom"
+      },
+      {
+        "nomor": "09.003/SP/WEBINAR/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-16",
+        "kegiatan": "Surat permohonan naraasumber"
+      },
+      {
+        "nomor": "08.004/LPJ/WEBINAR/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-21",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "09.005/SP/WEBINAR/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-21",
+        "kegiatan": "TAK Kolektif"
+      }
+    ]
+  },
+  "SOSIAL MENGAJAR": {
+    "abbrev": "SOSMENG",
+    "max_sequence": 6,
+    "next_sequence": 7,
+    "letters": [
+      {
+        "nomor": "07.001/P/SOSMENG/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-11",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/SOSMENG/HMIF/TUP/V/2026",
+        "tanggal": "",
+        "kegiatan": "Peminjaman Sekre"
+      },
+      {
+        "nomor": "03.003/ST/SOSMENG/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-20",
+        "kegiatan": "Surat Tugas"
+      },
+      {
+        "nomor": "10.004/S/SOSMENG/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-03",
+        "kegiatan": "Sertifikat"
+      },
+      {
+        "nomor": "08.005/LPJ/SOSMENG/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-03",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "09.006/SP/SOSMENG/HMIF/TUP/VI/2026",
+        "tanggal": "",
+        "kegiatan": ""
+      }
+    ]
+  },
+  "FIT & FUN": {
+    "abbrev": "FITNFUN",
+    "max_sequence": 3,
+    "next_sequence": 4,
+    "letters": [
+      {
+        "nomor": "07.001/P/FITNFUN/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-11",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/FITNFUN/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-07",
+        "kegiatan": "surat lab auvi"
+      },
+      {
+        "nomor": "11.003/SpK/FITNFUN/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-11",
+        "kegiatan": "MoU"
+      }
+    ]
+  },
+  "HMIF KREATIF": {
+    "abbrev": "HMKREATIF",
+    "max_sequence": 5,
+    "next_sequence": 6,
+    "letters": [
+      {
+        "nomor": "07.001/P/HMKREATIF/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-09",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "09.002/SP/HMKREATIF/HMIF/TUP/IV/2026",
+        "tanggal": "2026-04-16",
+        "kegiatan": "Peminjaman Kamera AUVI"
+      },
+      {
+        "nomor": "05.003/SPp/HMKREATIF/HMIF/TUP/IV/2026",
+        "tanggal": "2026-04-17",
+        "kegiatan": "Peminjaman Ruangan Gladi"
+      },
+      {
+        "nomor": "08.004/LPJ/HMIFKREATIF/HMIF/TUP/IV/2026",
+        "tanggal": "2026-04-22",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "10.005/S/HMIFKREATIF/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-06",
+        "kegiatan": "Sertif"
+      }
+    ]
+  },
+  "SHORT MOVIE": {
+    "abbrev": "SM",
+    "max_sequence": 3,
+    "next_sequence": 4,
+    "letters": [
+      {
+        "nomor": "07.001/P/SM/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-09",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/SM/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-04",
+        "kegiatan": "Peminjaman AUVI"
+      },
+      {
+        "nomor": "08.003/LPJ/SM/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-17",
+        "kegiatan": "LPJ"
+      }
+    ]
+  },
+  "TALKSHOW KWU": {
+    "abbrev": "TALKSHOWKWU",
+    "max_sequence": 13,
+    "next_sequence": 14,
+    "letters": [
+      {
+        "nomor": "07.001/P/TALKSHOWKWU/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-09",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "01.002/SK/TALKSHOWKWU/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-05",
+        "kegiatan": "SK"
+      },
+      {
+        "nomor": "09.003/SP/TALKSHOWKWU/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-13",
+        "kegiatan": "Surat Permohonan Pemateri Iftar"
+      },
+      {
+        "nomor": "09.004/SP/TALKSHOWKWU/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-13",
+        "kegiatan": "Surat Permohonan Pemateri Nanda"
+      },
+      {
+        "nomor": "05.005/SPp/TALKSHOWKWU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-04",
+        "kegiatan": "Surat lab auvi"
+      },
+      {
+        "nomor": "02.006/U/TALKSHOWKWU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-05",
+        "kegiatan": "Undangan kaprodi"
+      },
+      {
+        "nomor": "02.007/U/TALKSHOWKWU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-05",
+        "kegiatan": "Undangan Sekprodi"
+      },
+      {
+        "nomor": "02.008/U/TALKSHOWKWU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-05",
+        "kegiatan": "Undangan Pembina Pak Dany"
+      },
+      {
+        "nomor": "02.009/U/TALKSHOWKWU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-05",
+        "kegiatan": "Undangan Pembina Pak Aldo"
+      },
+      {
+        "nomor": "02.010/U/TALKSHOWKWU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-05",
+        "kegiatan": "Undangan Kema"
+      },
+      {
+        "nomor": "08.011/LPJ/TALKSHOWKWU/HMIF/TUP/V/2026",
+        "tanggal": "2026-05-25",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "10.012/S/TALKSHOWKWU/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-03",
+        "kegiatan": "Sertifikat"
+      },
+      {
+        "nomor": "09.013/SP/TALKSHOWKWU/HMIF/TUP/VI/2026",
+        "tanggal": "2026-06-17",
+        "kegiatan": "Surat Permohonan TAK Kolektif"
+      }
+    ]
+  },
+  "LDK": {
+    "abbrev": "LDK",
+    "max_sequence": 5,
+    "next_sequence": 6,
+    "letters": [
+      {
+        "nomor": "07.001/P/LDK/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-09",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "02.002/U/LDK/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-08",
+        "kegiatan": "Undangan Pemateri 1"
+      },
+      {
+        "nomor": "02.003/U/LDK/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-08",
+        "kegiatan": "Undangan Pemateri 2"
+      },
+      {
+        "nomor": "08.004/LPJ/LDK/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-23",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "10.005/S/LDK/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-25",
+        "kegiatan": "Sertif"
+      }
+    ]
+  },
+  "CERDAS CERMAT": {
+    "abbrev": "LCC",
+    "max_sequence": 4,
+    "next_sequence": 5,
+    "letters": [
+      {
+        "nomor": "07.001/P/LCC/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-02",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "05.002/SPp/LCC/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-10",
+        "kegiatan": "Surat lab auvi"
+      },
+      {
+        "nomor": "08.003/LPJ/LCC/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-30",
+        "kegiatan": "LPJ"
+      },
+      {
+        "nomor": "10.004/S/LCC/HMIF/TUP/IV/2026",
+        "tanggal": "2026-04-30",
+        "kegiatan": "Sertif"
+      }
+    ]
+  },
+  "NGAFIRMATICS": {
+    "abbrev": "NGAFIRMATICS",
+    "max_sequence": 6,
+    "next_sequence": 7,
+    "letters": [
+      {
+        "nomor": "07.001/P/NGAFIRMATICS/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-07",
+        "kegiatan": "Proposal"
+      },
+      {
+        "nomor": "02.002/U/NGAFIRMATICS/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-05",
+        "kegiatan": "Undangan Kaprodi"
+      },
+      {
+        "nomor": "02.003/U/NGAFIRMATICS/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-05",
+        "kegiatan": "Undangan Pembina "
+      },
+      {
+        "nomor": "02.004/U/NGAFIRMATICS/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-05",
+        "kegiatan": "Undangan Pembina "
+      },
+      {
+        "nomor": "05.005/SPp/NGAFIRMATICS/HMIF/TUP/II/2026",
+        "tanggal": "2026-02-08",
+        "kegiatan": "Surat Peminjaman Lab Auvi"
+      },
+      {
+        "nomor": "08.006/LPJ/NGAFIRMATICS/HMIF/TUP/III/2026",
+        "tanggal": "2026-03-03",
+        "kegiatan": "LPJ"
+      }
+    ]
+  }
+}
