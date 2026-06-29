@@ -45,5 +45,6 @@ module.exports = function (req, res) {
 5. HALAMAN PENGESAHAN: Terletak setelah Penutup. Blok tanda tangan Kiri-Kanan: Baris 1 (Ketua & Sekretaris), Baris 2 (Pembina & Chairman), Baris 3 (Ka.Ur Kemahasiswaan & Kaprodi), Baris 4 (Wakil Direktur di Tengah Bawah). Wajib mencantumkan nama lengkap, gelar, dan NIP/NIM yang valid.
 6. LAMPIRAN DOKUMEN: Lampiran I (Susunan Panitia), Lampiran II (Rancangan Anggaran Pemasukan/Pengeluaran), Lampiran III (Susunan Acara dengan kolom: No | Waktu | Kegiatan | PJ | Keterangan).`;
 
-    res.status(200).json({ model, rules });
+    const geminiKey = process.env.GEMINI_API_KEY || localEnv.GEMINI_API_KEY || "";
+    res.status(200).json({ model, rules, geminiKey });
 };

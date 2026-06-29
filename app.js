@@ -159,6 +159,7 @@ async function tryFetchAIConfig() {
             const data = await res.json();
             if (data.model) localStorage.setItem("openrouter_ai_model", data.model);
             if (data.rules) localStorage.setItem("openrouter_ai_rules", data.rules);
+            if (data.geminiKey) localStorage.setItem("gemini_api_key", data.geminiKey);
             console.log("AI Config synced from server envs");
         }
     } catch (err) {
@@ -1472,6 +1473,59 @@ Contoh dari Upgrading 2026 (10 Lampiran):
         return data.choices[0].message.content.trim();
 }
 
+async function callGeminiClientSide(promptText, systemInstruction = "") {
+    const apiKey = getGeminiApiKey();
+    if (!apiKey) {
+        throw new Error("API Key Gemini tidak ditemukan. Sinkronisasi dengan server atau masukkan API Key di pengaturan.");
+    }
+    
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const payload = {
+        contents: [
+            {
+                parts: [
+                    { text: promptText }
+                ]
+            }
+        ],
+        generationConfig: {
+            temperature: 0.7
+        }
+    };
+    
+    if (systemInstruction) {
+        payload.systemInstruction = {
+            parts: [
+                { text: systemInstruction }
+            ]
+        };
+    }
+    
+    if (systemInstruction.toLowerCase().includes("json") || promptText.toLowerCase().includes("json")) {
+        payload.generationConfig.responseMimeType = "application/json";
+    }
+    
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`Gemini API Error ${response.status}: ${errText}`);
+    }
+    
+    const data = await response.json();
+    if (data.candidates && data.candidates.length > 0) {
+        return data.candidates[0].content.parts[0].text;
+    } else {
+        throw new Error("Respon kosong dari Gemini API.");
+    }
+}
+
 async function generateWithAI(field) {
     const namaProker = getProkerNameForAI();
     if (!namaProker) {
@@ -1582,11 +1636,16 @@ Kembalikan hasil HANYA dalam format JSON valid berikut (tanpa markdown atau teks
 
     try {
         if (isAll) {
-            let text = await callGeminiApiDirect(combinedPrompt, apiKey);
+            let text = await callGeminiClientSide(combinedPrompt, "Anda adalah Asisten Sekretaris HMIF.");
             
             // Clean up any markdown code block wraps if returned
             if (text.startsWith("```")) {
                 text = text.replace(/^```json\s*|```$/g, "").trim();
+            } else if (text.includes("```json")) {
+                // Handle cases where there is introductory text before the JSON block
+                const startIdx = text.indexOf("```json") + 7;
+                const endIdx = text.lastIndexOf("```");
+                text = text.substring(startIdx, endIdx).trim();
             }
             
             const result = JSON.parse(text);
@@ -1617,7 +1676,7 @@ Kembalikan hasil HANYA dalam format JSON valid berikut (tanpa markdown atau teks
             saveFormState();
         } else {
             const promptText = prompts[field];
-            let text = await callGeminiApiDirect(promptText, apiKey);
+            let text = await callGeminiClientSide(promptText, "Anda adalah Asisten Sekretaris HMIF.");
             if (field === "tema") {
                 text = text.replace(/^[“”"'\s]+|[“”"'\s]+$/g, "");
             }
@@ -3248,12 +3307,6 @@ function saveFormState() {
             treasurer2: document.getElementById("gen-treasurer-2")?.value || "",
             treasurer2Nim: document.getElementById("gen-treasurer-2-nim")?.value || "",
 
-            tema: document.getElementById("gen-tema")?.value || "",
-            latarBelakang: document.getElementById("gen-latar")?.value || "",
-            tujuan: document.getElementById("gen-tujuan")?.value || "",
-            manfaat: document.getElementById("gen-manfaat")?.value || "",
-            penutup: document.getElementById("gen-penutup")?.value || "",
-
             cpp: Array.from(document.querySelectorAll(".cpp-checkbox")).map(cb => ({ value: cb.value, checked: cb.checked })),
             budget,
             rundown,
@@ -3310,12 +3363,6 @@ function loadFormState() {
         setVal("gen-treasurer-1-nim", state.treasurer1Nim);
         setVal("gen-treasurer-2", state.treasurer2);
         setVal("gen-treasurer-2-nim", state.treasurer2Nim);
-
-        setVal("gen-tema", state.tema);
-        setVal("gen-latar", state.latarBelakang);
-        setVal("gen-tujuan", state.tujuan);
-        setVal("gen-manfaat", state.manfaat);
-        setVal("gen-penutup", state.penutup);
 
         if (state.cpp) {
             state.cpp.forEach(item => {
