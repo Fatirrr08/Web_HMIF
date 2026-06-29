@@ -1476,10 +1476,12 @@ Contoh dari Upgrading 2026 (10 Lampiran):
 async function callGeminiClientSide(promptText, systemInstruction = "") {
     const apiKey = getGeminiApiKey();
     if (!apiKey) {
+        alert("DEBUG ERROR: API Key Gemini kosong!");
         throw new Error("API Key Gemini tidak ditemukan. Sinkronisasi dengan server atau masukkan API Key di pengaturan.");
     }
     
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Use gemini-2.0-flash since it is confirmed to work with the developer key
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
     const payload = {
         contents: [
             {
@@ -1505,6 +1507,7 @@ async function callGeminiClientSide(promptText, systemInstruction = "") {
         payload.generationConfig.responseMimeType = "application/json";
     }
     
+    console.log("DEBUG: Calling Gemini API directly from browser...");
     const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -1527,6 +1530,7 @@ async function callGeminiClientSide(promptText, systemInstruction = "") {
 }
 
 async function generateWithAI(field) {
+    alert("DEBUG: Mulai memproses generateWithAI untuk field: " + field);
     const namaProker = getProkerNameForAI();
     if (!namaProker) {
         alert("Silakan pilih atau masukkan Nama Kegiatan terlebih dahulu!");
@@ -2988,7 +2992,7 @@ function runAIAudit(docId, payload) {
             
             // Call Gemini API directly from the browser to bypass Vercel serverless 10-second timeout
             const apiKey = getGeminiApiKey();
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
             
             const geminiPayload = {
                 contents: [
