@@ -2927,40 +2927,46 @@ function runAIAudit(docId, payload) {
             }
             `;
             
-            const openrouterKey = localStorage.getItem("openrouter_api_key") || "";
-            const openrouterModel = localStorage.getItem("openrouter_ai_model") || "anthropic/claude-3.5-sonnet";
+            // Call Gemini API directly from the browser to bypass Vercel serverless 10-second timeout
+            const apiKey = getGeminiApiKey();
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
             
-            // Call Serverless Function
-            return fetch("/api/completion", {
+            const geminiPayload = {
+                contents: [
+                    {
+                        parts: [
+                            { text: prompt }
+                        ]
+                    }
+                ],
+                generationConfig: {
+                    temperature: 0.2,
+                    responseMimeType: "application/json"
+                },
+                systemInstruction: {
+                    parts: [
+                        { text: "Anda adalah AI Agent QA Auditor beroutput JSON." }
+                    ]
+                }
+            };
+            
+            return fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    model: openrouterModel,
-                    messages: [
-                        { role: "system", content: "Anda adalah AI Agent QA Auditor beroutput JSON." },
-                        { role: "user", content: prompt }
-                    ]
-                })
+                body: JSON.stringify(geminiPayload)
             });
         })
         .then(res => {
-            if (!res.ok) throw new Error("Gagal menghubungi API layanan AI.");
+            if (!res.ok) throw new Error("Gagal menghubungi API layanan AI (Direct Gemini).");
             return res.json();
         })
-        .then(apiRes => {
-            let responseText = "";
-            if (apiRes.choices && apiRes.choices.length > 0) {
-                // OpenRouter response format
-                responseText = apiRes.choices[0].message.content;
-            } else if (apiRes.candidates && apiRes.candidates.length > 0) {
-                // Gemini response format
-                responseText = apiRes.candidates[0].content.parts[0].text;
-            } else {
+        .then(geminiRes => {
+            if (!geminiRes.candidates || geminiRes.candidates.length === 0) {
                 throw new Error("Respon AI tidak valid atau kosong.");
             }
-            
+            const responseText = geminiRes.candidates[0].content.parts[0].text;
             const auditResult = JSON.parse(responseText.trim());
             
             aiStatus.innerHTML = '<i class="fa-solid fa-circle-check" style="color: #34d399;"></i> Evaluasi AI Agent selesai!';
