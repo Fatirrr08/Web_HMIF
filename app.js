@@ -1480,8 +1480,8 @@ async function callGeminiClientSide(promptText, systemInstruction = "") {
         throw new Error("API Key Gemini tidak ditemukan. Sinkronisasi dengan server atau masukkan API Key di pengaturan.");
     }
     
-    // Use gemini-2.0-flash since it is confirmed to work with the developer key
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    // Use gemini-flash-latest since gemini-2.0-flash has 0 quota for this key
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
     const payload = {
         contents: [
             {
@@ -1530,7 +1530,6 @@ async function callGeminiClientSide(promptText, systemInstruction = "") {
 }
 
 async function generateWithAI(field) {
-    alert("DEBUG: Mulai memproses generateWithAI untuk field: " + field);
     const namaProker = getProkerNameForAI();
     if (!namaProker) {
         alert("Silakan pilih atau masukkan Nama Kegiatan terlebih dahulu!");
@@ -2992,7 +2991,7 @@ function runAIAudit(docId, payload) {
             
             // Call Gemini API directly from the browser to bypass Vercel serverless 10-second timeout
             const apiKey = getGeminiApiKey();
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
             
             const geminiPayload = {
                 contents: [
